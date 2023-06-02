@@ -8,3 +8,8 @@ It grabs what we throw at it using `gcloud app deploy`, **BUILDS IT**, then runs
  - use App Engine to manage the entire app
  - use Cloud Storage to view the app's files
  - use Logs Explorer to view the app's logs
+
+## What it's missing
+- Integration with Google Datastore (for actual backend data storage)
+- Integration with Github Actions (for CI/CD; [see addon](https://github.com/google-github-actions/deploy-appengine))
+- Final frontend content and structure. It has all the required libs, but doesn't yet follow any of our conventions.
