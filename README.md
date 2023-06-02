@@ -1,6 +1,8 @@
 # Test of Next.js on Google App Engine
 This project is a minimal example of a Next.js app running on Google App Engine.
 
+[**View this project live at: https://mattgcloudtest4dte.nw.r.appspot.com/**](https://mattgcloudtest4dte.nw.r.appspot.com)
+
 ## How App Engine works
 It grabs what we throw at it using `gcloud app deploy`, **BUILDS IT**, then runs it on a serverless platform. All the files are first uploaded to Google Cloud Storage, then it builds the app and takes the minified version of the app and hosts it on what's essentially Google Cloud Run.
  - use App Engine to manage the entire app
