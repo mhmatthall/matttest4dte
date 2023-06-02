@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
 
-module.exports = nextConfig
+module.exports = {
+  // Better React error highlighting
+  reactStrictMode: true,
+
+  // Change build folder from default `.next` to `build`
+  distDir: "build",
+};

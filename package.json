@@ -3,16 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "node server.js",
+    "build": "rimraf ./build && NODE_ENV=production next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "next lint",
+    "deploy": "gcloud app deploy",
+    "deploy:previewupload": "gcloud meta list-files-for-upload"
   },
   "dependencies": {
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "next": "13.4.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "rimraf": "^5.0.1"
+  },
+  "optionalDependencies": {
+    "win-node-env": "0.6.1"
+  },
+  "devDependencies": {
+    "sass": "1.53.0"
   }
 }

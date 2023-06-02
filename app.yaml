@@ -1,0 +1,12 @@
+# Config for Google App Engine
+env: standard
+runtime: nodejs18
+service: default
+
+handlers:
+  # for all routes
+  - url: /.*
+    # ensure https is always used
+    secure: always
+    # do some magic to make it work with next.js
+    script: auto
