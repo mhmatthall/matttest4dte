@@ -1,15 +1,21 @@
-# Test of Next.js on Google App Engine
-This project is a minimal example of a Next.js app running on Google App Engine.
+# Test repo for the Down to Earth app
+This repo is a dev prototype for testing things for the Down to Earth app — specifically things to do with pipeline, so we don't break the main repo.
 
-[**View this project live at: https://mattgcloudtest4dte.nw.r.appspot.com/**](https://mattgcloudtest4dte.nw.r.appspot.com)
+[**View this repo hosted live: dtetest.matthall.io**](https://dtetest.matthall.io/)
 
-## How App Engine works
-It grabs what we throw at it using `gcloud app deploy`, **BUILDS IT**, then runs it on a serverless platform. All the files are first uploaded to Google Cloud Storage, then it builds the app and takes the minified version of the app and hosts it on what's essentially Google Cloud Run.
- - use App Engine to manage the entire app
- - use Cloud Storage to view the app's files
- - use Logs Explorer to view the app's logs
+## Deployment & hosting
+Right so we started with Google App Engine, which is kind of easy to use but did take some time to understand all 80000 of Google's cloud products. However, there are [known latency issues with GAE that they just aren't fixing](https://issuetracker.google.com/issues/64458939), so we just swivelled that and now we're using [AWS Amplify](https://aws.amazon.com/amplify/). It's a nice backend for taking a Node.js-based app and hosting it, and jesus wept is it easy to use. In short: AWS > Google Cloud.
 
-## What it's missing
-- Integration with Google Datastore (for actual backend data storage)
-- Integration with Github Actions (for CI/CD; [see addon](https://github.com/google-github-actions/deploy-appengine))
-- Final frontend content and structure. It has all the required libs, but doesn't yet follow any of our conventions.
+This repo is currently setup with basic CD on the AWS side, so whenever a commit is pushed to main, the site gets re-fetched, built, and deployed.
+
+## Using this repo
+### Prerequisites
+- [Install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm#using-a-node-version-manager-to-install-nodejs-and-npm). The preferred way is to use Node Version Manager because there's lots of different versions of Node, but the installer works too.
+- Get editor access to this repo by messaging Matt
+
+### Instructions
+1. Clone this repo
+2. Run `npm install` to download the required dependencies
+3. Run `npm run dev` to start a local dev server
+
+Whenever you push a commit AWS will automatically redeploy the site, so within a few mins it'll be live at [dtetest.matthall.io](https://dtetest.matthall.io/).
