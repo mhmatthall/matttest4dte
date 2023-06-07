@@ -1,14 +1,19 @@
 {
-  "name": "mattgloudtest4dte",
-  "version": "0.1.0",
+  "name": "matttest4dte",
+  "version": "0.2.0",
+  "description": "Test repo for the Down to Earth web app",
   "private": true,
+  "homepage": "https://dtetest.matthall.io/",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "github:mhmatthall/mattgloudtest4dte"
+  },
   "scripts": {
     "dev": "node server.js",
     "build": "rimraf ./build && NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.js",
-    "lint": "next lint",
-    "deploy": "gcloud app deploy",
-    "deploy:previewupload": "gcloud meta list-files-for-upload"
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "13.4.4",
