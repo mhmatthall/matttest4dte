@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "github:mhmatthall/mattgloudtest4dte"
+    "url": "github:mhmatthall/matttest4dte"
   },
   "scripts": {
     "dev": "node server.js",
