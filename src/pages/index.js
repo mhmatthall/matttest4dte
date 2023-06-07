@@ -1,7 +1,13 @@
 import Demo from "@/components/demo";
+import Head from "next/head";
 
 export default function Home() {
   return (
-    <Demo />
+    <div>
+      <Head>
+        <title>DtE Demo</title>
+      </Head>
+      <Demo />
+    </div>
   );
 }
