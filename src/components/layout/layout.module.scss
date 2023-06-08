@@ -1,0 +1,24 @@
+@use "@/styles/theme";
+
+// The root object of the site, including header and footer
+.root {
+  // Ensure sticky header & footer
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+// The root object of Layout
+.main {
+  margin: 1rem theme.$page-margin;
+
+  ul {
+    margin: 0;
+    padding: 0 0 0 1.5rem;
+  }
+
+  li {
+    padding: 0.25rem 0;
+  }
+}
