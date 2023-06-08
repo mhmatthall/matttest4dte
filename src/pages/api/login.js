@@ -27,28 +27,22 @@ async function login(req, res) {
   }
 
   // Validation: password
-  bcrypt.compare(
-    body.password,
-    userData.password.S,
-    async function (err, result) {
-      if (result) {
-        // The password matches; create session cookie
-        req.session.user = {
-          id: userData.userId.S,
-          username: userData.username.S,
-          name: userData.name.S,
-        };
+  if (await bcrypt.compare(body.password, userData.password.S)) {
+    // The password matches; create session cookie
+    req.session.user = {
+      id: userData.userId.S,
+      username: userData.username.S,
+      name: userData.name.S,
+    };
 
-        await req.session.save();
+    await req.session.save();
 
-        // Tell the frontend that we're logged in (cookie set)
-        res.send({ ok: true });
-      } else {
-        // The password doesn't match
-        return res.status(401).json({ message: "Invalid credentials" });
-      }
-    }
-  );
+    // Tell the frontend that we're logged in (cookie set)
+    return res.status(200).json({ message: "Login successful" });
+  } else {
+    // The password doesn't match
+    return res.status(401).json({ message: "Invalid credentials" });
+  }
 }
 
 async function getUserByUsername(username) {
