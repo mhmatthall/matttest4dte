@@ -7,7 +7,7 @@ export const middleware = async (req) => {
   // it's the middleware and a bit spooky (you can't use anything in /lib/withSession)
   const session = await getIronSession(req, res, {
     cookieName: "DTE-TEST_SESSION_COOKIE",
-    password: process.env.SESSION_SECRET,
+    password: process.env.DTE_TEST_SESSION_SECRET,
     // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
     cookieOptions: {
       secure: process.env.NODE_ENV === "production" ? true : false,

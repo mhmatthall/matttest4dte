@@ -55,6 +55,10 @@ async function getUserByUsername(username) {
   // Create DynamoDB client
   const dbClient = new DynamoDBClient({
     region: "eu-west-2",
+    credentials: {
+      accessKeyId: process.env.DTE_TEST_AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.DTE_TEST_AWS_SECRET_ACCESS_KEY,
+    },
   });
 
   // Create and send get request on secondary index `username-index`
