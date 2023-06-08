@@ -1,0 +1,25 @@
+{
+  "name": "DtE Test App",
+  "short_name": "DtE Test App",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#fff",
+  "description": "Test repo for the Down to Earth web app.",
+  "icons": [
+    {
+      "src": "img/dte250.png",
+      "sizes": "250x250",
+      "type": "image/png"
+    },
+    {
+      "src": "img/dte128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "img/dte48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ]
+}
