@@ -14,13 +14,16 @@ export default function LoginForm() {
   } = useForm();
 
   // We intercept the form submission event so we can give the user feedback without reloading the page
-  const onSubmit = async (data) => {
-    axios
+  const onSubmit = async (data, event) => {
+    // Prevent browser refresh
+    event.preventDefault();
+
+    await axios
       .post("/api/login", data)
-      .then((res) => {
+      .then(async (res) => {
         // Redirect to the dashboard page if the login was successful
         if (res.status === 200) {
-          router.push("/dashboard");
+          await router.reload();
         }
       })
       .catch((err) => {
@@ -41,7 +44,9 @@ export default function LoginForm() {
           id="username"
           {...register("username", { required: true })}
         />
-        {errors.username && <p className={style.error}>&uarr; Enter a username.</p>}
+        {errors.username && (
+          <p className={style.error}>&uarr; Enter a username.</p>
+        )}
       </div>
       <div className={style.section}>
         <label htmlFor="password">Password</label>
@@ -51,17 +56,19 @@ export default function LoginForm() {
           id="password"
           {...register("password", { required: true })}
         />
-        {errors.password && <p className={style.error}>&uarr; Enter a password</p>}
+        {errors.password && (
+          <p className={style.error}>&uarr; Enter a password</p>
+        )}
       </div>
       {errors.root?.serverError && (
         <div className={style.section}>
-          <p className={style.serverError}>Wrong username or password, please try again.</p>
+          <p className={style.serverError}>
+            Wrong username or password, please try again.
+          </p>
         </div>
       )}
       <div className={style.section}>
-        <button type="submit">
-          Login
-        </button>
+        <button type="submit">Login</button>
       </div>
     </form>
   );
