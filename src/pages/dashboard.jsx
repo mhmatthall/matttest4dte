@@ -1,6 +1,7 @@
 import LogoutButton from "@/components/auth/LogoutButton";
 import Layout from "@/components/layout/Layout";
 import { withSessionSsr } from "../../lib/withSession";
+import { withSessionSsr } from "../../lib/session/withSession";
 
 // Actual page component
 const Home = ({ user }) => (

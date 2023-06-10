@@ -1,6 +1,6 @@
 import { DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
 import { withSessionRoute } from "../../../lib/withSession";
-const bcrypt = require("bcrypt");
+import { withSessionRoute } from "../../../lib/session/withSession";
 
 export default withSessionRoute(login);
 
