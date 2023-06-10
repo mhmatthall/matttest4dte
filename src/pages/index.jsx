@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>DtE Demo</title>
+        <title>DtE Test App</title>
       </Head>
       <main>
         <h1>Down to Earth x EPIC CDT</h1>

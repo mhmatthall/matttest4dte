@@ -1,11 +1,14 @@
 import LogoutButton from "@/components/auth/LogoutButton";
-import Layout from "@/components/layout/Layout";
-import { withSessionSsr } from "../../lib/withSession";
+import Layout, { pageTitleSuffix } from "@/components/layout/Layout";
+import Head from "next/head";
 import { withSessionSsr } from "../../lib/session/withSession";
 
 // Actual page component
 const Home = ({ user }) => (
   <Layout>
+    <Head>
+      <title>{"Home" + pageTitleSuffix}</title>
+    </Head>
     <h1>Welcome back, {user.name}</h1>
     <LogoutButton />
   </Layout>
