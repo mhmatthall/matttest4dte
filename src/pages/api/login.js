@@ -1,11 +1,11 @@
-import { DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
-import { withSessionRoute } from "../../../lib/withSession";
+import { validateCredentials } from "../../../lib/auth/password";
+import { refreshToken } from "../../../lib/auth/token";
 import { withSessionRoute } from "../../../lib/session/withSession";
 
 export default withSessionRoute(login);
 
 async function login(req, res) {
-  // Extract body
+  // Extract request body
   const { body } = req;
 
   // Guard: incorrect method
@@ -18,65 +18,33 @@ async function login(req, res) {
     return res.status(400).json({ message: "Missing required fields" });
   }
 
-  // Get user data from database
-  const userData = await getUserByUsername(body.username);
+  // Validate credentials
+  const userData = await validateCredentials(body.username, body.password);
 
-  // Validation: user doesn't exist
   if (!userData) {
+    // User not found or password incorrect
     return res.status(401).json({ message: "Invalid credentials" });
-  }
+  } else {
+    // The password matches; commence login
+    // Generate new token
+    const newToken = await refreshToken(userData.userId.S);
 
-  // Validation: password
-  if (await bcrypt.compare(body.password, userData.password.S)) {
-    // The password matches; create session cookie
+    // Guard: token generation failed
+    if (!newToken) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+
+    // Create session cookie
     req.session.user = {
-      id: userData.userId.S,
+      userId: userData.userId.S,
+      token: newToken,
       username: userData.username.S,
       name: userData.name.S,
+      roles: userData.roles.SS,
     };
-
     await req.session.save();
 
     // Tell the frontend that we're logged in (cookie set)
     return res.status(200).json({ message: "Login successful" });
-  } else {
-    // The password doesn't match
-    return res.status(401).json({ message: "Invalid credentials" });
-  }
-}
-
-async function getUserByUsername(username) {
-  // Create DynamoDB client
-  const dbClient = new DynamoDBClient({
-    region: "eu-west-2",
-    credentials: {
-      accessKeyId: process.env.DTE_TEST_AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.DTE_TEST_AWS_SECRET_ACCESS_KEY,
-    },
-  });
-
-  // Create and send get request on secondary index `username-index`
-  try {
-    const dbResults = await dbClient.send(
-      new QueryCommand({
-        TableName: "user",
-        IndexName: "username-index",
-        KeyConditionExpression: "username = :username",
-        ExpressionAttributeValues: {
-          ":username": { S: username },
-        },
-      })
-    );
-
-    // Guard for missing user
-    if (dbResults.Count === 0) {
-      return false;
-    } else {
-      // Return user data
-      return dbResults.Items[0];
-    }
-  } catch (error) {
-    console.log("Database error:", error);
-    return false;
   }
 }
