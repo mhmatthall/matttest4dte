@@ -3,8 +3,6 @@ import { NextResponse } from "next/server";
 import { validateToken } from "../lib/auth/token";
 
 export const middleware = async (req) => {
-  console.log("Middleware invoked on route:", req.nextUrl.pathname);
-
   // Get NextResponse object to pass into iron-session
   const res = NextResponse.next();
 
@@ -63,6 +61,9 @@ export const middleware = async (req) => {
       return res;
     }
   }
+
+  // If nextUrl is undefined, continue anyway
+  return res;
 };
 
 export const config = {
