@@ -4,5 +4,14 @@
     "plugin:react/recommended",
     "next/core-web-vitals",
     "prettier"
-  ]
+  ],
+  "rules": {
+    "no-var": "warn",
+    "no-useless-return": "warn",
+    "eqeqeq": "warn",
+    "no-tabs": "warn",
+    "camelcase": "warn",
+    "no-trailing-spaces": "warn",
+    "capitalized-comments": "warn"
+  }
 }
