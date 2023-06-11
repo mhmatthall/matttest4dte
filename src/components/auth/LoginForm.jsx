@@ -23,7 +23,7 @@ export default function LoginForm() {
       .then(async (res) => {
         // Redirect to the dashboard page if the login was successful
         if (res.status === 200) {
-          await router.reload();
+          router.reload();
         }
       })
       .catch((err) => {
