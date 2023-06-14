@@ -66,9 +66,17 @@ export const middleware = async (req) => {
   return res;
 };
 
+/**
+ * Configuration for the middleware that stops it running on routes it shouldn't.
+ */
 export const config = {
   matcher: [
-    "/dashboard", // Match all dashboard routes
-    "/login", // Match login page
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    "/((?!_next/static|_next/image|favicon.ico).*)",
   ],
 };
