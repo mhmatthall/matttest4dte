@@ -17,9 +17,11 @@ export default function Dashboard({ user }) {
 }
 
 // Server-side function to pass user data from session cookie to page props
-export const getServerSideProps = withSessionSsr(async function ({ req }) {
-  const { user } = req.session;
-  return {
-    props: { user },
-  };
-});
+export const getServerSideProps = withSessionSsr(
+  async function getServerSideProps({ req }) {
+    const { user } = req.session;
+    return {
+      props: { user },
+    };
+  }
+);
