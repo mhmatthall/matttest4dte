@@ -1,9 +1,19 @@
-import { validateCredentials } from "../../../lib/auth/password";
+/**
+ * @file Login API endpoint
+ */
+import { getUserData } from "../../../lib/auth/account";
 import { refreshToken } from "../../../lib/auth/token";
 import { withSessionRoute } from "../../../lib/session/withSession";
 
+/** Wrap login route so we can read session cookie */
 export default withSessionRoute(login);
 
+/**
+ * Login route handler.
+ * @param {Request} req The incoming HTTP request object
+ * @param {Response} res The outgoing HTTP response object
+ * @returns {Promise<Response>} The response object
+ */
 async function login(req, res) {
   // Extract request body
   const { body } = req;
@@ -15,17 +25,29 @@ async function login(req, res) {
 
   // Guard: missing fields
   if (!body.username || !body.password) {
-    return res.status(400).json({ message: "Missing required fields" });
+    return res
+      .status(400)
+      .json({ message: "Missing required fields, please try again." });
   }
 
   // Validate credentials
-  const userData = await validateCredentials(body.username, body.password);
+  let userData = {};
+  try {
+    userData = await getUserData(body.username, body.password);
+  } catch (error) {
+    // Something went wrong when validating credentials
+    return res
+      .status(500)
+      .json({ message: "Internal server error: " + error.message });
+  }
 
   if (!userData) {
-    // User not found or password incorrect
-    return res.status(401).json({ message: "Invalid credentials" });
+    // User not found or credentials incorrect
+    return res
+      .status(401)
+      .json({ message: "Wrong username or password, please try again." });
   } else {
-    // The password matches; commence login
+    // The credentials are correct; commence login
     // Generate new token
     const newToken = await refreshToken(userData.userId.S);
 

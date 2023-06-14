@@ -30,6 +30,7 @@ export default function LoginForm() {
         // Show an error message on the form if the login was unsuccessful
         setError("root.serverError", {
           type: err.response.status,
+          message: err.response.data.message,
         });
       });
   };
@@ -63,7 +64,7 @@ export default function LoginForm() {
       {errors.root?.serverError && (
         <div className={style.section}>
           <p className={style.serverError}>
-            Wrong username or password, please try again.
+            {errors.root?.serverError.message}
           </p>
         </div>
       )}
