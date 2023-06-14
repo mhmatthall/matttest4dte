@@ -19,6 +19,8 @@ This is a Next.js project and so we're using their structure, which tightly coup
 - The frontend is rendered server-side, which means it's flattened into HTML by the time the user gets it. This is good for performance, because otherwise React on its own has to do a lot of work to render the page in the browser.
 - The backend is going to house the actual system logic. All the fetching of data from the database, authentication, etc. will be done here.
 
+The server communicates with [AWS DynamoDB](https://aws.amazon.com/dynamodb/) for all data storage, but does its own authentication and session management. The app is hosted with [AWS Amplify Hosting](https://aws.amazon.com/amplify/hosting/) in London (`eu-west-2`).
+
 ## Installation
 
 ### Prerequisites
@@ -33,7 +35,14 @@ This is a Next.js project and so we're using their structure, which tightly coup
 1. Clone this repo
 2. Run `npm install` to download the required dependencies
 3. Install the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions for vscode. These will make your life easier by automatically formatting your code to follow convention.
-4. Done!
+4. Create a `.env.local` file in the root of the project that looks like this (fill in the blanks):
+
+```
+DTE_TEST_AWS_ACCESS_KEY_ID=<the AWS access key id>
+DTE_TEST_AWS_SECRET_ACCESS_KEY=<the AWS secret access key>
+DTE_TEST_SESSION_SECRET=<the session cookie encryption password>
+```
+5. Done!
 
 ## Development
 
@@ -46,3 +55,6 @@ All the scripts can be viewed/edited in `package.json`.
 
 **Note:**
 Right now, whenever you push a commit AWS will automatically redeploy the site, so within a few mins it'll be live at [dtetest.matthall.io](https://dtetest.matthall.io/).
+
+### Contributing
+After you've implemented whatever in your dev environment, make sure you also test it locally in production mode (i.e. run `npm run build` then `npm run start`) before pushing your changes. This more closely mimics the production environment, and will catch any issues that might arise from the build process.
