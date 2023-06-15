@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Layout from "@/components/layout/Layout";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
           This is a next.js site hosted on Github and served by AWS Amplify!
         </p>
         <p>
-          <Link href="/dashboard">Go to Dashboard</Link>
+          <a href="/dashboard">Go to Dashboard</a>
         </p>
         <Image
           src="/img/jones.png"
