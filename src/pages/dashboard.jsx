@@ -40,9 +40,10 @@ export default function Dashboard({ user }) {
  */
 export const getServerSideProps = withSessionSsr(
   async function getServerSideProps({ req }) {
-    const { user } = req.session;
     return {
-      props: { user },
+      props: {
+        user: req.session.user,
+      },
     };
   }
 );
