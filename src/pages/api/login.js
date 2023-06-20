@@ -37,7 +37,7 @@ async function login(req, res) {
   } catch (error) {
     // Something went wrong when validating credentials
     return res
-      .status(500)
+      .status(502)
       .json({ message: "Internal server error: " + error.message });
   }
 
