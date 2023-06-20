@@ -4,8 +4,12 @@ import { withSessionRoute } from "../../../lib/session/withSession";
 export default withSessionRoute(logout);
 
 async function logout(req, res) {
-  // Delete token from db
-  deleteToken(req.session.user.userId);
+  // Try to delete token from db
+  try {
+    deleteToken(req.session.user.userId);
+  } catch (error) {
+    return res.status(500).json({ message: "Server error:" + error.message });
+  }
 
   // Remove authenticated session
   req.session.destroy();
