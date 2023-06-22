@@ -1,12 +1,10 @@
 import Head from "next/head";
+import Header from "./Header";
 
-import Header from "@/components/layout/header/Header";
-// import Footer from "@/components/layout/footer/Footer";
-
-import style from "./layout.module.scss";
+import style from "./Layout.module.scss";
 
 // Global variables
-export const pageTitleSuffix = " | DtE test";
+export const pageTitleSuffix = " | Dashboard | DtE test";
 
 // Here comes the layout!
 export default function Layout({ children }) {

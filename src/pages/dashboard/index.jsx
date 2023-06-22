@@ -2,9 +2,9 @@
  * @file User dashboard page
  */
 import LogoutButton from "@/components/auth/LogoutButton";
-import Layout, { pageTitleSuffix } from "@/components/layout/Layout";
+import Layout, { pageTitleSuffix } from "@/components/dashboard/Layout";
+import { withSessionSsr } from "@/lib/auth/withSession";
 import Head from "next/head";
-import { withSessionSsr } from "../../lib/session/withSession";
 
 /**
  * Dashboard page component

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import Layout from "@/components/layout/Layout";
+import Layout from "@/components/landing/Layout";
 import Head from "next/head";
 import Image from "next/image";
 

@@ -1,10 +1,10 @@
 /**
  * @file Login API endpoint
  */
-import { refreshToken } from "../../../lib/auth/token";
-import { getUserByUsername } from "../../../lib/db/dynamo";
-import { ClientError, ServerError } from "../../../lib/errors";
-import { withSessionRoute } from "../../../lib/session/withSession";
+import { refreshToken } from "@/lib/auth/token";
+import { withSessionRoute } from "@/lib/auth/withSession";
+import { getUserByUsername } from "@/lib/common/dynamo";
+import { ClientError, ServerError } from "@/lib/common/errors";
 const bcrypt = require("bcrypt");
 
 /** Wrap login route so we can read session cookie */

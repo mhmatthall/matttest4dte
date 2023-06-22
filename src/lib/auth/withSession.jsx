@@ -1,6 +1,6 @@
 // Wrapper functions for checking session auth
+import { ironOptions } from "@/lib/auth/iron-config";
 import { withIronSessionApiRoute, withIronSessionSsr } from "iron-session/next";
-import { ironOptions } from "./iron-config";
 
 export function withSessionRoute(handler) {
   return withIronSessionApiRoute(handler, ironOptions);

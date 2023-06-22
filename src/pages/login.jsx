@@ -1,5 +1,5 @@
 import LoginForm from "@/components/auth/LoginForm";
-import Layout, { pageTitleSuffix } from "@/components/layout/Layout";
+import Layout, { pageTitleSuffix } from "@/components/landing/Layout";
 import Head from "next/head";
 
 export default function Home() {

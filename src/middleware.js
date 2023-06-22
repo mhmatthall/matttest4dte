@@ -1,9 +1,9 @@
 /**
  * @file Middleware for all routes to handle authentication and authorisation.
  */
+import { validateToken } from "@/lib/auth/token";
 import { getIronSession } from "iron-session/edge";
 import { NextResponse } from "next/server";
-import { validateToken } from "../lib/auth/token";
 
 /**
  * Middleware logic for all matching routes.

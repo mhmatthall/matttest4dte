@@ -1,5 +1,5 @@
-import { deleteToken } from "../../../lib/auth/token";
-import { withSessionRoute } from "../../../lib/session/withSession";
+import { deleteToken } from "@/lib/auth/token";
+import { withSessionRoute } from "@/lib/auth/withSession";
 
 export default withSessionRoute(logout);
 

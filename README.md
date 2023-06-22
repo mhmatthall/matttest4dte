@@ -58,3 +58,65 @@ Right now, whenever you push a commit AWS will automatically redeploy the site, 
 
 ### Contributing
 After you've implemented whatever in your dev environment, make sure you also test it locally in production mode (i.e. run `npm run build` then `npm run start`) before pushing your changes. This more closely mimics the production environment, and will catch any issues that might arise from the build process.
+
+### Repo structure
+Reference other files using the `@` macro defined in [`jsconfig.json`](./jsconfig.json) to keep imports succinct.
+
+Here's how the project should be structured (file names are placeholders and may not exist):
+```
+/
+├── .vscode/
+├── public/
+│   ├── img/
+│   ├── favicon.ico
+│   └── manifest.json
+└── src/
+│   ├── components/
+│   │   ├── auth/
+│   │   │   ├── LoginForm.jsx
+│   │   │   ├── LogoutButton.jsx
+│   │   │   ├── RegisterForm.jsx
+│   │   │   └── UserDataForm.jsx
+│   │   ├── common/
+│   │   │   ├── Button.jsx
+│   │   │   └── CheckBox.jsx
+│   │   ├── dashboard/
+│   │   │   ├── Layout.jsx
+│   │   │   ├── Header.jsx
+│   │   │   └── Footer.jsx
+│   │   ├── game/
+│   │   │   ├── Layout.jsx
+│   │   │   └── Map.jsx
+│   │   └── landing/
+│   │       └── Layout.jsx
+│   ├── lib/
+│   │   ├── auth/
+│   │   │   ├── iron-config.js
+│   │   │   ├── token.js
+│   │   │   └── withSession.jsx
+│   │   └── common/
+│   │       ├── dynamo.js
+│   │       └── errors.js
+│   ├── pages/
+│   │   ├── api/
+│   │   │   ├── login.js
+│   │   │   └── logout.js
+│   │   ├── dashboard/
+│   │   │   ├── index.js
+│   │   │   └── settings.js
+│   │   ├── go/
+│   │   │   └── index.js
+│   │   ├── _app.js
+│   │   ├── index.js
+│   │   └── login.js
+│   ├── styles/
+│   │   ├── _fonts.scss
+│   │   ├── _theme.scss
+│   │   └── globals.scss
+│   └── middleware.js
+├── .env.local
+├── (all the config files...)
+├── package.json
+├── README.md
+└── server.js
+```

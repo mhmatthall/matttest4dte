@@ -1,9 +1,9 @@
 /**
  * @file Handlers for token management on the database.
  */
+import { editUserToken, getUserById } from "@/lib/common/dynamo";
+import { AuthenticationError, DatabaseError } from "@/lib/common/errors";
 import { v4 as uuidv4 } from "uuid";
-import { editUserToken, getUserById } from "../db/dynamo";
-import { AuthenticationError, DatabaseError } from "../errors";
 
 /**
  * Compare a given token against the one stored in the database for a given user.
