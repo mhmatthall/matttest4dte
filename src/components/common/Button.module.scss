@@ -1,0 +1,34 @@
+@use "@/styles/theme";
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: fit-content;
+  margin-left: auto;
+
+  // Theme
+  background-color: theme.$primary;
+  border-radius: 12px;
+  border: 0;
+  padding: 0.75rem;
+
+  // Typography
+  color: theme.$light;
+  font-family: theme.$title-font;
+  font-size: theme.$font-21;
+  letter-spacing: -0.05rem;
+
+  .icon {
+    display: flex;
+  }
+
+  &:hover {
+    background-color: theme.$primary-dark;
+  }
+
+  &:active {
+    background-color: theme.$primary-dark;
+    outline: 3px solid theme.$highlight;
+  }
+}

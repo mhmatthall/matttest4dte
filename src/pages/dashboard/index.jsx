@@ -1,37 +1,12 @@
 /**
  * @file User dashboard page
  */
-import LogoutButton from "@/components/auth/LogoutButton";
 import Layout, { pageTitleSuffix } from "@/components/dashboard/Layout";
 import { withSessionSsr } from "@/lib/auth/withSession";
 import Head from "next/head";
+import { createContext } from "react";
 
-/**
- * Dashboard page component
- * @param {object} user The user object from the session cookie
- */
-export default function Dashboard({ user }) {
-  return (
-    <Layout>
-      <Head>
-        <title>{"Home" + pageTitleSuffix}</title>
-      </Head>
-      <h1>Welcome back, {user.name}</h1>
-      <p>
-        Your username is <code>{user.username}</code>, your UID is{" "}
-        <code>{user.userId}</code>, and you belong to the following roles:
-      </p>
-      <ul>
-        {user.roles.map((role) => (
-          <li key={role}>
-            <code>{role}</code>
-          </li>
-        ))}
-      </ul>
-      <LogoutButton />
-    </Layout>
-  );
-}
+export const UserContext = createContext({ name: "Error" });
 
 /**
  * Server-side function to pass user data from session cookie to page props
@@ -47,3 +22,20 @@ export const getServerSideProps = withSessionSsr(
     };
   }
 );
+
+/**
+ * Dashboard page component
+ * @param {object} user The user object from the session cookie
+ */
+export default function Dashboard({ user }) {
+  return (
+    <UserContext.Provider value={user}>
+      <Layout>
+        <Head>
+          <title>{"Home" + pageTitleSuffix}</title>
+        </Head>
+        <h1>What would you like to do?</h1>
+      </Layout>
+    </UserContext.Provider>
+  );
+}

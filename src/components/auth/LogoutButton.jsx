@@ -1,3 +1,4 @@
+import Button from "@/components/common/Button";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -20,8 +21,11 @@ export default function LogoutButton() {
   };
 
   return (
-    <button type="button" onClick={handleClick}>
-      Logout
-    </button>
+    <Button
+      labelText="Logout"
+      altText="Logout button"
+      iconSrc="/img/icons/logout-light.svg"
+      onClick={handleClick}
+    />
   );
 }
