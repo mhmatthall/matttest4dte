@@ -8,13 +8,15 @@ body {
   box-sizing: border-box;
   overflow-x: hidden;
 
-  color: theme.$dark-colour;
+  background-color: theme.$light;
+  color: theme.$primary-dark;
 
   font-family: theme.$body-font;
   font-weight: normal;
-  font-size: theme.$default-font-size;
+  font-size: theme.$font-15;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.05rem;
 }
 
 h1,

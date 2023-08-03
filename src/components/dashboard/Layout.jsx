@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Header from "./Header";
-
 import style from "./Layout.module.scss";
 
 // Global variables
@@ -19,7 +18,7 @@ export default function Layout({ children }) {
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <Header />
-      <div className={style.main}>{children}</div>
+      <main className={style.main}>{children}</main>
     </div>
   );
 }
