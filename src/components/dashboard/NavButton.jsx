@@ -11,7 +11,7 @@ export default function RailButton({ href, label, glyph }) {
     <Link href={href} className={style.bounds} replace>
       <div className={style.symbolContainer}>
         <div className={isActive ? style.symbolAreaActive : style.symbolArea}>
-          <span class="material-symbols-outlined" className={style.symbol}>
+          <span className={style["material-symbols-outlined"]}>
             {glyph}
           </span>
         </div>

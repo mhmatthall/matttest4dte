@@ -1,5 +1,6 @@
 @use "@/styles/theme";
 @use "@/styles/m3";
+@import "material-symbols";
 
 .bounds {
   display: flex;
@@ -51,7 +52,8 @@
       padding: 4px 16px;
       border-radius: theme.$corner-full;
 
-      .symbol {
+      // Modify imported material-symbols style
+      .material-symbols-outlined {
         font-size: theme.$medium-symbol;
       }
     }
