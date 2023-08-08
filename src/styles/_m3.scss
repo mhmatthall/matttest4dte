@@ -1,0 +1,20 @@
+@use "theme";
+
+@mixin label-medium {
+  color: theme.$on-surface-variant;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 133.333% */
+}
+
+@mixin label-medium-prominent {
+  color: theme.$on-surface;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 0.5px;
+}

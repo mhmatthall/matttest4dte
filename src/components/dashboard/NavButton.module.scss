@@ -1,0 +1,62 @@
+@use "@/styles/theme";
+@use "@/styles/m3";
+
+.bounds {
+  display: flex;
+  height: 56px;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  align-self: stretch;
+
+  // Default colouring
+  color: theme.$on-surface-variant;
+
+  // Active colour variant
+  &:has(.symbolAreaActive) {
+    color: theme.$on-secondary-container;
+
+    .symbolContainer {
+      background: theme.$secondary-container;
+    }
+
+    .label {
+      @include m3.label-medium-prominent;
+    }
+  }
+
+  // Highlight symbol area on bounds hover
+  &:hover :is(.symbolArea, .symbolAreaActive) {
+    background: rgba(theme.$on-surface, 0.08);
+  }
+
+  // Highlight symbol area on bounds focus
+  &:focus :is(.symbolArea, .symbolAreaActive),
+  &:active :is(.symbolArea, .symbolAreaActive) {
+    background: rgba(theme.$on-surface, 0.12);
+  }
+
+  .symbolContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: theme.$corner-full;
+
+    .symbolArea,
+    .symbolAreaActive {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4px 16px;
+      border-radius: theme.$corner-full;
+
+      .symbol {
+        font-size: theme.$medium-symbol;
+      }
+    }
+  }
+  .label {
+    @include m3.label-medium;
+  }
+}

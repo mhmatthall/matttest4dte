@@ -27,6 +27,7 @@ export const getServerSideProps = withSessionSsr(
  * Dashboard page component
  * @param {object} user The user object from the session cookie
  */
+// TODO: Make dashboard layout in here and in _app.jsx to enable SPA-like navigation (getLayout)
 export default function Dashboard({ user }) {
   return (
     <UserContext.Provider value={user}>
@@ -34,7 +35,7 @@ export default function Dashboard({ user }) {
         <Head>
           <title>{"Home" + pageTitleSuffix}</title>
         </Head>
-        <h1>What would you like to do?</h1>
+        <h1>Home</h1>
       </Layout>
     </UserContext.Provider>
   );

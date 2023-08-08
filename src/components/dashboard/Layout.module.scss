@@ -2,16 +2,21 @@
 
 // The root object of the site, including header and footer
 .root {
-  // Ensure sticky header & footer
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   min-height: 100vh;
+  background-color: theme.$surface-container;
 }
 
 // The root object of Layout
 .main {
-  margin: 1.5rem theme.$page-margin;
+  display: flex;
+  margin: theme.$medium-margin theme.$medium-margin theme.$medium-margin 0;
+  width: 100%;
+  height: inherit;
+
+  background-color: theme.$surface;
+  border-radius: 24px;
 
   ul {
     margin: 0;

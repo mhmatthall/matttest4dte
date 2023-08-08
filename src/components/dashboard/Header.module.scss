@@ -1,9 +1,0 @@
-@use "@/styles/theme";
-
-.container {
-  display: flex;
-  align-items: center;
-  padding: 1rem theme.$page-margin;
-  background-color: theme.$primary-light;
-  color: theme.$light;
-}
