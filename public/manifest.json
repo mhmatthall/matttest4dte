@@ -1,10 +1,25 @@
 {
-  "name": "DtE Test App",
-  "short_name": "DtE Test App",
+  "name": "cronicl",
+  "short_name": "cronicl",
+  "description": "Let's explore our local outdoors together.",
+  "categories": ["education", "games", "lifestyle"],
   "start_url": "/",
-  "display": "fullscreen",
-  "background_color": "#fff",
-  "description": "Test repo for the Down to Earth web app.",
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "url": "/dashboard",
+      "description": "Go to your dashboard"
+    },
+    {
+      "name": "Join",
+      "url": "/play",
+      "description": "Join a session"
+    }
+  ],
+  "display": "standalone",
+  "orientation": "landscape",
+  "theme_color": "#fff8f5",
+  "background_color": "#fff8f5",
   "icons": [
     {
       "src": "img/dte250.png",
