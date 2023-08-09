@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>cronicl – Let&apos;s explore our local outdoors together.</title>
+        <title>cronicl &ndash; Let&apos;s explore our local outdoors together.</title>
       </Head>
       <main>
         <Placeholder />
