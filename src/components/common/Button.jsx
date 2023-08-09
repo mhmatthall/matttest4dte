@@ -1,18 +1,12 @@
-import Image from "next/image";
-
+import Link from "next/link";
 import style from "./Button.module.scss";
 
-export default function Button({ iconSrc, altText, labelText, onClick }) {
+export default function Button({ href, label, variant }) {
   return (
-    <button type="button" className={style.container} onClick={onClick}>
-      <Image
-        src={iconSrc}
-        alt={altText}
-        className={style.icon}
-        width="32"
-        height="32"
-      />
-      <b>{labelText}</b>
-    </button>
+    <Link href={href} className={style["bounds-" + variant]} replace>
+      <div className={style.buttonArea}>
+        <div className={style.label}>{label}</div>
+      </div>
+    </Link>
   );
 }

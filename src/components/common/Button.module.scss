@@ -1,34 +1,152 @@
 @use "@/styles/theme";
+@use "@/styles/m3";
 
-.container {
-  display: flex;
+// Common style
+.bounds-filled,
+.bounds-outlined,
+.bounds-text,
+.bounds-elevated,
+.bounds-tonal {
+  display: inline-flex;
+  height: 40px;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  height: fit-content;
-  margin-left: auto;
+  gap: 8px;
+  flex-shrink: 0;
+  border-radius: theme.$corner-full;
 
-  // Theme
-  background-color: theme.$primary;
-  border-radius: 12px;
-  border: 0;
-  padding: 0.75rem;
-
-  // Typography
-  color: theme.$light;
-  font-family: theme.$title-font;
-  font-size: theme.$font-21;
-  letter-spacing: -0.05rem;
-
-  .icon {
+  .buttonArea {
     display: flex;
-  }
+    padding: 10px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: theme.$corner-full;
 
+    .label {
+      @include m3.label-large;
+    }
+  }
+}
+
+// Filled variant-specific style
+.bounds-filled {
+  background: theme.$primary;
+  color: theme.$on-primary;
+
+  // Highlight symbol area on bounds hover
   &:hover {
-    background-color: theme.$primary-dark;
+    @include m3.elevation-1;
+    background: theme.$primary;
+
+    .buttonArea {
+      background: rgba(theme.$on-primary, 0.08);
+    }
   }
 
+  // Highlight symbol area on bounds focus
+  &:focus,
   &:active {
-    background-color: theme.$primary-dark;
-    outline: 3px solid theme.$highlight;
+    .buttonArea {
+      background: rgba(theme.$on-primary, 0.12);
+    }
+  }
+}
+
+// Outlined variant-specific style
+.bounds-outlined {
+  color: theme.$primary;
+  border: 1px solid theme.$outline;
+
+  // Highlight symbol area on bounds hover
+  &:hover {
+    .buttonArea {
+      background: rgba(theme.$primary, 0.08);
+    }
+  }
+
+  &:focus {
+    border: 1px solid theme.$primary;
+  }
+
+  // Highlight symbol area on bounds focus
+  &:focus,
+  &:active {
+    .buttonArea {
+      background: rgba(theme.$primary, 0.12);
+    }
+  }
+}
+
+.bounds-text {
+  color: theme.$primary;
+
+  .buttonArea {
+    padding: 10px 12px;
+  }
+
+  // Highlight symbol area on bounds hover
+  &:hover {
+    .buttonArea {
+      background: rgba(theme.$primary, 0.08);
+    }
+  }
+
+  // Highlight symbol area on bounds focus
+  &:focus,
+  &:active {
+    .buttonArea {
+      background: rgba(theme.$primary, 0.12);
+    }
+  }
+}
+
+.bounds-elevated {
+  @include m3.elevation-1;
+  color: theme.$on-primary;
+
+  // Highlight symbol area on bounds hover
+  &:hover {
+    @include m3.elevation-2;
+
+    .buttonArea {
+      background: rgba(theme.$on-primary, 0.08);
+    }
+  }
+
+  // Highlight symbol area on bounds focus
+  &:focus,
+  &:active {
+    @include m3.elevation-1;
+
+    .buttonArea {
+      background: rgba(theme.$on-primary, 0.12);
+    }
+  }
+}
+
+.bounds-tonal {
+  background: theme.$secondary-container;
+  color: theme.$on-secondary-container;
+
+  // Highlight symbol area on bounds hover
+  &:hover {
+    @include m3.elevation-1;
+    background: theme.$secondary-container;
+
+    .buttonArea {
+      background: rgba(theme.$on-secondary-container, 0.08);
+    }
+  }
+
+  // Highlight symbol area on bounds focus
+  &:focus,
+  &:active {
+    .buttonArea {
+      background: rgba(theme.$on-secondary-container, 0.12);
+    }
   }
 }
