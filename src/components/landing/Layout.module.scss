@@ -1,6 +1,5 @@
 @use "@/styles/theme";
 
-// The root object of the site, including header and footer
 .root {
   // Ensure sticky header & footer
   display: flex;
@@ -9,9 +8,9 @@
   min-height: 100vh;
 }
 
-// The root object of Layout
 .main {
-  margin: 1rem 4rem;
+  // Centre the content
+  margin: auto;
 
   ul {
     margin: 0;
