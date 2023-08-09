@@ -1,11 +1,21 @@
 // Colour tokens
-$surface: #fff8f5;
 $surface-dim: #e3d8d2;
+$surface: #fff8f5;
+$surface-bright: #fff8f5;
+$surface-container-lowest: #ffffff;
+$surface-container-low: #fdf1eb;
 $surface-container: #f8ece5;
+$surface-container-high: #f2e6e0;
+$surface-container-highest: #ece0da;
 
 $on-surface: #201a17;
 $on-surface-variant: #52443b;
 $outline: #84746a;
+$outline-variant: #d6c3b7;
+
+$inverse-surface: #362f2b;
+$inverse-on-surface: #fbeee8;
+$inverse-primary: #ffb781;
 
 $primary: #924c00;
 $on-primary: #ffffff;
@@ -16,6 +26,14 @@ $secondary: #795900;
 $on-secondary: #ffffff;
 $secondary-container: #ffdea0;
 $on-secondary-container: #261a00;
+
+$error: #ba1a1a;
+$on-error: #ffffff;
+$error-container: #ffdad6;
+$on-error-container: #410002;
+
+$scrim: #000000;
+$shadow: #000000;
 
 // Corner rounding (border-radius) tokens
 $corner-none: 0;

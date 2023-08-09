@@ -1,7 +1,27 @@
 @use "theme";
 
+@mixin headline-large {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px; /* 125% */
+}
+
+@mixin headline-medium {
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px; /* 128.571% */
+}
+
+@mixin headline-small {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px; /* 133.333% */
+}
+
 @mixin label-medium {
-  color: theme.$on-surface-variant;
   text-align: center;
   font-size: 12px;
   font-style: normal;
@@ -10,11 +30,37 @@
 }
 
 @mixin label-medium-prominent {
-  color: theme.$on-surface;
   text-align: center;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: 16px; /* 133.333% */
   letter-spacing: 0.5px;
+}
+
+@mixin label-large {
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}
+
+// Elevation
+@mixin elevation-1 {
+  background: theme.$surface-container-low;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+@mixin elevation-2 {
+  background: theme.$surface-container;
+  box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+@mixin elevation-3 {
+  background: theme.$surface-container-high;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3),
+    0px 4px 8px 3px rgba(0, 0, 0, 0.15);
 }
