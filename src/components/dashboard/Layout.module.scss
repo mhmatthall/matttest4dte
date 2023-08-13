@@ -16,7 +16,7 @@
   height: inherit;
 
   background-color: theme.$surface;
-  border-radius: 24px;
+  border-radius: theme.$corner-extra-large;
 
   ul {
     margin: 0;
