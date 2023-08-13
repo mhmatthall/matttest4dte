@@ -78,7 +78,7 @@ export const middleware = async (req) => {
   /*
    * Deny access to /dashboard route if user is not logged in
    */
-  if (req.nextUrl.pathname === "/dashboard") {
+  if (req.nextUrl.pathname.startsWith("/dashboard")) {
     if (
       !user ||
       !user.userId ||
