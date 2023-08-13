@@ -2,41 +2,22 @@
  * @file User dashboard page
  */
 import Layout, { pageTitleSuffix } from "@/components/dashboard/Layout";
-import { withSessionSsr } from "@/lib/auth/withSession";
+import { useUser } from "@/lib/auth/useUser";
 import Head from "next/head";
-import { createContext } from "react";
 
-export const UserContext = createContext({ name: "Error" });
+Home.getLayout = (page) => {
+  return <Layout>{page}</Layout>;
+};
 
-/**
- * Server-side function to pass user data from session cookie to page props
- * @param {object} req The request object
- * @returns {Promise<GetServerSidePropsResult>} The user object from the session cookie
- */
-export const getServerSideProps = withSessionSsr(
-  async function getServerSideProps({ req }) {
-    return {
-      props: {
-        user: req.session.user,
-      },
-    };
-  }
-);
-
-/**
- * Dashboard page component
- * @param {object} user The user object from the session cookie
- */
-// TODO: Make dashboard layout in here and in _app.jsx to enable SPA-like navigation (getLayout)
-export default function Dashboard({ user }) {
+export default function Home() {
+  const { user } = useUser();
   return (
-    <UserContext.Provider value={user}>
-      <Layout>
-        <Head>
-          <title>{"Home" + pageTitleSuffix}</title>
-        </Head>
-        <h1>Home</h1>
-      </Layout>
-    </UserContext.Provider>
+    <>
+      <Head>
+        <title>{"Home" + pageTitleSuffix}</title>
+      </Head>
+      <h1>Home</h1>
+      Hello, {user?.name ?? "stranger"}!
+    </>
   );
 }

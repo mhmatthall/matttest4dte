@@ -4,13 +4,17 @@
 import Layout, { pageTitleSuffix } from "@/components/dashboard/Layout";
 import Head from "next/head";
 
-export default function MapView() {
+Page.getLayout = (page) => {
+  return <Layout>{page}</Layout>;
+};
+
+export default function Page() {
   return (
-    <Layout>
+    <>
       <Head>
         <title>{"Map" + pageTitleSuffix}</title>
       </Head>
       <h1>Map</h1>
-    </Layout>
+    </>
   );
 }

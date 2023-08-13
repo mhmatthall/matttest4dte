@@ -4,13 +4,17 @@
 import Layout, { pageTitleSuffix } from "@/components/dashboard/Layout";
 import Head from "next/head";
 
-export default function ScrapbookView() {
+Page.getLayout = (page) => {
+  return <Layout>{page}</Layout>;
+};
+
+export default function Page() {
   return (
-    <Layout>
+    <>
       <Head>
         <title>{"Scrapbook" + pageTitleSuffix}</title>
       </Head>
       <h1>Scrapbook</h1>
-    </Layout>
+    </>
   );
 }

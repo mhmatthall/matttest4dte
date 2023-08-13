@@ -4,13 +4,17 @@
 import Layout, { pageTitleSuffix } from "@/components/dashboard/Layout";
 import Head from "next/head";
 
-export default function SettingsView() {
+Page.getLayout = (page) => {
+  return <Layout>{page}</Layout>;
+};
+
+export default function Page() {
   return (
-    <Layout>
+    <>
       <Head>
         <title>{"Settings" + pageTitleSuffix}</title>
       </Head>
       <h1>Settings</h1>
-    </Layout>
+    </>
   );
 }
