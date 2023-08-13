@@ -46,6 +46,27 @@
   line-height: 20px; /* 142.857% */
 }
 
+@mixin body-large {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+@mixin body-medium {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+@mixin body-small {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+
 // Elevation
 @mixin elevation-1 {
   background: theme.$surface-container-low;
