@@ -1,0 +1,78 @@
+@use "@/styles/theme";
+@use "@/styles/m3";
+@import "material-symbols";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: theme.$surface;
+  color: theme.$on-surface;
+
+  .item {
+    display: flex;
+    width: 360px;
+    height: 56px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    .itemArea,
+    .itemAreaActive {
+      display: flex;
+      padding: 12px 24px 12px 16px;
+      align-items: center;
+      gap: theme.$compact-margin;
+      align-self: stretch;
+
+      .symbol {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: theme.$medium-symbol;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex: 1 0 0;
+
+        .headline {
+          @include m3.label-large;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          flex: 1 0 0;
+          align-self: stretch;
+        }
+
+        .supportingText {
+          @include m3.body-medium;
+          color: theme.$on-surface-variant;
+          align-self: stretch;
+        }
+      }
+    }
+
+    .itemAreaActive {
+      background-color: rgba(theme.$on-surface, 0.12);
+    }
+
+    // Highlight state layer on bounds hover
+    &:hover .itemArea {
+      background-color: rgba(theme.$on-surface, 0.08);
+    }
+
+    // Highlight state layer on bounds focus
+    &:focus,
+    &:active {
+      .itemArea,
+      .itemAreaActive {
+        background-color: rgba(theme.$on-surface, 0.12);
+      }
+    }
+  }
+}
