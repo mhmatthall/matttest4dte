@@ -1,0 +1,21 @@
+@use "@/styles/theme";
+@use "@/styles/m3";
+@import "material-symbols";
+
+.listPane {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 360px;
+  border-right: 1px solid theme.$outline-variant;
+
+  .header {
+    @include m3.headline-medium;
+    display: flex;
+    padding: theme.$medium-margin;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: theme.$compact-margin;
+    align-self: stretch;
+  }
+}
