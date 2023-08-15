@@ -5,11 +5,11 @@ import Layout, { pageTitleSuffix } from "@/components/dashboard/Layout";
 import { useUser } from "@/lib/auth/useUser";
 import Head from "next/head";
 
-Home.getLayout = (page) => {
+Page.getLayout = (page) => {
   return <Layout>{page}</Layout>;
 };
 
-export default function Home() {
+export default function Page() {
   const { user } = useUser();
   return (
     <>
