@@ -19,7 +19,7 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>{"Account settings" + pageTitleSuffix}</title>
+        <title>{"Account" + pageTitleSuffix}</title>
       </Head>
       <h1>{user.name}</h1>
       <ul>
