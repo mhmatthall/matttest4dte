@@ -13,6 +13,12 @@ export default function SettingsLayout({ children }) {
             glyph="account_circle"
             href="/dashboard/settings/account"
           />
+          <ListItem
+            label="About cronicl"
+            subLabel="Credits, version info, licences"
+            glyph="info"
+            href="/dashboard/settings/about"
+          />
         </List>
       </div>
       <div className={style.detailPane}>{children}</div>
