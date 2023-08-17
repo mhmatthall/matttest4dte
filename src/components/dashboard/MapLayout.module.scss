@@ -1,0 +1,15 @@
+@use "@/styles/theme";
+@use "@/styles/m3";
+@import "material-symbols";
+
+.primary {
+  height: auto;
+  width: 75%;
+  overflow: hidden;
+  border-radius: theme.$corner-extra-large;
+  border: 1px solid theme.$outline-variant;
+}
+
+.supportingPane {
+  margin: auto;
+}
