@@ -8,6 +8,7 @@
   align-items: flex-start;
   background-color: theme.$surface;
   color: theme.$on-surface;
+  gap: 8px;
 
   .item {
     display: flex;
