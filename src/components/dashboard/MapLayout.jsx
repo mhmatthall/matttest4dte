@@ -1,5 +1,5 @@
-import "mapbox-gl/dist/mapbox-gl.css";
-import Map from "react-map-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
+import Map from "react-map-gl/maplibre";
 import style from "./MapLayout.module.scss";
 
 export default function MapLayout({ children }) {
@@ -9,8 +9,7 @@ export default function MapLayout({ children }) {
         <Map
           reuseMaps
           attributionControl={false}
-          mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-          mapStyle="mapbox://styles/mapbox/streets-v12"
+          mapStyle="https://tiles-eu.stadiamaps.com/styles/osm_bright.json"
           initialViewState={{
             longitude: -3.981756,
             latitude: 51.61242,

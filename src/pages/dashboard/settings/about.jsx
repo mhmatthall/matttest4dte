@@ -49,24 +49,24 @@ export default function Page() {
       <ul>
         <li>Material Design system and iconography by Google</li>
         <li>Inter typeface by the Inter Project Authors</li>
-        <li>Maps and map data by Mapbox</li>
+        <li>
+          Map data, style, and hosting by OpenStreetMap, OpenMapTiles, and
+          Stadia Maps respectively
+        </li>
         <ul>
           <li>
-            <a href="https://www.mapbox.com/about/maps/" target="_blank">
-              &copy; Mapbox
+            <a href="https://www.openstreetmap.org/about/" target="_blank">
+              &copy; OpenStreetMap contributors
             </a>
           </li>
           <li>
-            <a href="http://www.openstreetmap.org/about/" target="_blank">
-              &copy; OpenStreetMap
+            <a href="https://www.openmaptiles.org/" target="_blank">
+              &copy; OpenMapTiles
             </a>
           </li>
           <li>
-            <a
-              href="https://www.mapbox.com/map-feedback/#/-74.5/40/10"
-              target="_blank"
-            >
-              Contribute to Mapbox
+            <a href="https://stadiamaps.com/" target="_blank">
+              &copy; Stadia Maps
             </a>
           </li>
         </ul>

@@ -6,7 +6,7 @@ frontend:
         - npm ci
     build:
       commands:
-        - env | grep -e DTE_TEST_AWS_ACCESS_KEY_ID -e DTE_TEST_AWS_SECRET_ACCESS_KEY -e DTE_TEST_SESSION_SECRET -e NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN >> .env.production
+        - env | grep -e DTE_TEST_AWS_ACCESS_KEY_ID -e DTE_TEST_AWS_SECRET_ACCESS_KEY -e DTE_TEST_SESSION_SECRET >> .env.production
         - npm run build
   artifacts:
     baseDirectory: build
