@@ -2,7 +2,7 @@
 @use "@/styles/m3";
 @import "material-symbols";
 
-.bounds {
+.container {
   display: flex;
   height: 56px;
   flex-direction: column;
@@ -26,15 +26,21 @@
     }
   }
 
-  // Highlight symbol area on bounds hover
-  &:hover :is(.symbolArea, .symbolAreaActive) {
-    background: rgba(theme.$on-surface, 0.08);
+  // Highlight symbol area on container hover
+  &:hover {
+    .symbolArea,
+    .symbolAreaActive {
+      background: rgba(theme.$on-surface, 0.08);
+    }
   }
 
-  // Highlight symbol area on bounds focus
-  &:focus :is(.symbolArea, .symbolAreaActive),
-  &:active :is(.symbolArea, .symbolAreaActive) {
-    background: rgba(theme.$on-surface, 0.12);
+  // Highlight symbol area on container focus
+  &:focus,
+  &:active {
+    .symbolArea,
+    .symbolAreaActive {
+      background: rgba(theme.$on-surface, 0.12);
+    }
   }
 
   .symbolContainer {
@@ -58,6 +64,7 @@
       }
     }
   }
+
   .label {
     @include m3.label-medium;
   }

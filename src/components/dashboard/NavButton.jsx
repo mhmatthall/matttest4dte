@@ -11,7 +11,7 @@ export default function NavButton({ href, label, glyph }) {
       : router.pathname.startsWith(href);
 
   return (
-    <Link href={href} className={style.bounds} replace>
+    <Link href={href} className={style.container} replace>
       <div className={style.symbolContainer}>
         <div className={isActive ? style.symbolAreaActive : style.symbolArea}>
           <span className={style["material-symbols-outlined"]}>{glyph}</span>
