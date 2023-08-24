@@ -10,7 +10,7 @@
     "url": "github:mhmatthall/matttest4dte"
   },
   "scripts": {
-    "dev": "node server.js",
+    "dev": "rimraf ./build && node server.js",
     "build": "rimraf ./build && NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
