@@ -18,15 +18,8 @@ export default function Page() {
       </Head>
       <h1>About</h1>
       <p>
-        cronicl is made by a team of PhD students at Swansea University as part
-        of the{" "}
-        <a
-          href="https://www.swansea.ac.uk/computational-foundry/epsrc-centre-for-doctoral-training/"
-          target="_blank"
-        >
-          EPIC CDT
-        </a>
-        . We&apos;re supported by the{" "}
+        cronicl is made by a team of PhD students at Swansea University.
+        We&apos;re supported by the{" "}
         <a href="https://www.ukri.org/councils/epsrc/" target="_blank">
           Engineering &amp; Physical Sciences Research Council (grant number
           EP/S021892/1)
@@ -37,8 +30,8 @@ export default function Page() {
         It&apos;s a collaborative project with{" "}
         <a href="https://downtoearthproject.org.uk/" target="_blank">
           Down to Earth
-        </a>
-        , whose inspiration, support, and feedback made cronicl possible.
+        </a>{" "}
+        &ndash; whose inspiration, support, and feedback made cronicl possible.
         Special thanks to Kate Denner, Chris Dow, and the rest of the team.
       </p>
       <h2>Attribution</h2>
