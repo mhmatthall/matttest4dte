@@ -20,7 +20,8 @@ h1,
 h2,
 h3,
 p,
-li {
+li,
+input {
   margin: 0;
   padding: 0;
 }
@@ -34,4 +35,11 @@ li {
 a {
   text-decoration: none;
   color: theme.$on-surface;
+}
+
+input {
+  border: none;
+  outline: none;
+  font: inherit;
+  background: none;
 }
