@@ -1,0 +1,198 @@
+@use "@/styles/theme";
+@use "@/styles/m3";
+@import "material-symbols";
+
+.container-filled,
+.container-outlined {
+  display: flex;
+  width: 210px;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: theme.$corner-extra-small theme.$corner-extra-small 0px 0px;
+
+  &:has(.disabledOverlay) {
+    .textField {
+      background: none;
+      opacity: 0.38;
+    }
+    input {
+      cursor: default;
+    }
+  }
+
+  // When focussed and not disabled
+  &:focus-within:not(:has(input:read-only)) {
+    .label {
+      color: theme.$primary;
+    }
+  }
+
+  .textField {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    color: theme.$on-surface-variant;
+
+    .textFieldAreaNoIcon,
+    .textFieldAreaBothIcon,
+    .textFieldAreaLeadingIcon,
+    .textFieldAreaTrailingIcon {
+      display: flex;
+      align-items: center;
+      align-self: stretch;
+      border-radius: theme.$corner-extra-small theme.$corner-extra-small 0px 0px;
+
+      .leadingIcon {
+        display: flex;
+        width: 48px;
+        height: 48px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        color: theme.$on-surface-variant;
+        font-size: theme.$medium-symbol;
+      }
+
+      .content {
+        display: flex;
+        height: 40px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        flex: 1 0 0;
+
+        .label {
+          @include m3.body-small;
+          display: flex;
+          align-items: center;
+        }
+
+        .input {
+          @include m3.body-large;
+          display: inline-block;
+          width: 100%;
+          align-items: center;
+          color: theme.$on-surface;
+          caret-color: theme.$primary;
+        }
+      }
+
+      .trailingIconContainer {
+        display: flex;
+        cursor: pointer;
+
+        .trailingIcon {
+          display: flex;
+          width: 48px;
+          height: 48px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          color: theme.$on-surface-variant;
+          font-size: theme.$medium-symbol;
+        }
+      }
+    }
+  }
+
+  .supportingText {
+    color: theme.$on-surface-variant;
+  }
+}
+
+// Variant-specific styling
+.textFieldAreaNoIcon {
+  padding: theme.$corner-small theme.$corner-large;
+}
+
+.textFieldAreaBothIcon {
+  padding: theme.$corner-extra-small 0;
+}
+
+.textFieldAreaLeadingIcon {
+  padding: theme.$corner-extra-small theme.$corner-large
+    theme.$corner-extra-small 0;
+}
+
+.textFieldAreaTrailingIcon {
+  padding: theme.$corner-extra-small 0 theme.$corner-extra-small
+    theme.$corner-large;
+}
+
+.container-filled {
+  &:hover {
+    .textFieldAreaNoIcon,
+    .textFieldAreaBothIcon,
+    .textFieldAreaLeadingIcon,
+    .textFieldAreaTrailingIcon {
+      background: rgba(theme.$on-surface, 0.08);
+    }
+  }
+
+  // When focussed and not disabled
+  &:focus-within:not(:has(input:read-only)) {
+    .activeIndicator {
+      height: 2px;
+      background: theme.$primary;
+      margin: -1px 0 0 0;
+    }
+  }
+
+  .disabledOverlay {
+    width: inherit;
+    height: 56px;
+    position: absolute;
+    background: rgba(theme.$on-surface, 0.04);
+    border-radius: theme.$corner-extra-small theme.$corner-extra-small 0px 0px;
+  }
+
+  .activeIndicator {
+    width: 210px;
+    height: 1px;
+    background: theme.$on-surface-variant;
+  }
+
+  .textField {
+    background: theme.$surface-container-highest;
+    border-radius: theme.$corner-extra-small theme.$corner-extra-small 0px 0px;
+  }
+}
+
+.container-outlined {
+  &:hover {
+    .textField {
+      box-shadow: 0 0 0 1px theme.$on-surface;
+      color: theme.$on-surface;
+    }
+  }
+
+  // When focussed and not disabled
+  &:focus-within:not(:has(input:read-only)) {
+    .textField {
+      border-color: transparent;
+      box-shadow: 0 0 0 2px theme.$primary;
+    }
+  }
+
+  .textField {
+    border-radius: theme.$corner-extra-small;
+    box-shadow: 0 0 0 1px theme.$outline;
+
+    .content {
+      position: relative;
+
+      .label {
+        padding: 0px theme.$corner-extra-small;
+        position: absolute;
+        left: -4px;
+        top: -16px;
+        background: theme.$surface;
+      }
+    }
+  }
+}
