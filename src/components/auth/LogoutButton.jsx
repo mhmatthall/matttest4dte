@@ -15,17 +15,10 @@ export default function LogoutButton() {
         }
       })
       .catch((err) => {
-        // Show an error message on the form if the login was unsuccessful
+        // Show an error message on the form if the logout was unsuccessful
         alert(err);
       });
   };
 
-  return (
-    <Button
-      labelText="Logout"
-      altText="Logout button"
-      iconSrc="/img/icons/logout-light.svg"
-      onClick={handleClick}
-    />
-  );
+  return <Button variant="filled" label="Log out" onClick={handleClick} />;
 }
