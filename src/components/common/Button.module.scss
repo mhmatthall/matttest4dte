@@ -6,7 +6,18 @@
 .bounds-outlined,
 .bounds-text,
 .bounds-elevated,
-.bounds-tonal {
+.bounds-tonal,
+.bounds-disabled {
+  // UA override
+  appearance: none;
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+
+  // Styling
   display: inline-flex;
   height: 40px;
   flex-direction: column;
@@ -106,7 +117,7 @@
 
 .bounds-elevated {
   @include m3.elevation-1;
-  color: theme.$on-primary;
+  color: theme.$primary;
 
   // Highlight symbol area on bounds hover
   &:hover {
@@ -148,5 +159,15 @@
     .buttonArea {
       background: rgba(theme.$on-secondary-container, 0.12);
     }
+  }
+}
+
+.bounds-disabled {
+  color: theme.$on-surface;
+  opacity: 0.38;
+  cursor: default;
+
+  .buttonArea {
+    background: rgba(theme.$on-surface, 0.12);
   }
 }
