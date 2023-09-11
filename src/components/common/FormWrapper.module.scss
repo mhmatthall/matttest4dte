@@ -1,0 +1,15 @@
+@use "@/styles/theme";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: theme.$medium-margin;
+  width: inherit;
+  max-width: 480px;
+  padding: 0.5rem 0.25rem;
+
+  button {
+    width: fit-content;
+    align-self: flex-end;
+  }
+}
