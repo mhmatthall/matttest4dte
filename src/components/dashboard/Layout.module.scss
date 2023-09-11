@@ -4,8 +4,10 @@
 .root {
   display: flex;
   justify-content: flex-start;
+  max-height: 100vh;
   min-height: 100vh;
   background-color: theme.$surface-container;
+  overflow: hidden;
 }
 
 // The root object of Layout

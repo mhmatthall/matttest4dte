@@ -22,17 +22,25 @@
 
 .detailPane {
   display: flex;
-  padding: 24px 24px 0px 24px;
   flex-direction: column;
+  width: inherit;
+  padding: theme.$medium-margin;
   align-items: flex-start;
+  align-self: auto;
   gap: 16px;
-  align-self: stretch;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   h1 {
     @include m3.headline-medium;
   }
 
-  h2 {
+  > h2 {
     @include m3.headline-small;
+    margin: 1rem 0 0 0;
+  }
+
+  .container {
+    width: 50%;
   }
 }
