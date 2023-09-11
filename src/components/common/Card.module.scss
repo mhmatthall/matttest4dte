@@ -7,9 +7,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 360px;
+  width: 360px;
   height: auto;
-  margin: theme.$medium-margin;
   padding: theme.$medium-margin;
   gap: theme.$medium-margin;
   border-radius: theme.$corner-medium;
