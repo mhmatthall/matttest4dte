@@ -5,7 +5,7 @@
 .container-filled,
 .container-outlined {
   display: flex;
-  width: 210px;
+  min-width: 210px;
   flex-direction: column;
   align-items: flex-start;
   flex-shrink: 0;
@@ -101,6 +101,14 @@
   }
 
   .supportingText {
+    display: flex;
+    padding: theme.$corner-extra-small theme.$corner-large 0px
+      theme.$corner-large;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+
+    @include m3.body-small;
     color: theme.$on-surface-variant;
   }
 }
@@ -152,7 +160,7 @@
   }
 
   .activeIndicator {
-    width: 210px;
+    width: 100%;
     height: 1px;
     background: theme.$on-surface-variant;
   }

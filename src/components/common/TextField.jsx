@@ -3,24 +3,21 @@ import style from "./TextField.module.scss";
 
 export default function TextField({
   variant,
+  fieldType,
   isDisabled,
   label,
-  defaultValue,
   placeholder,
   supportingText,
   leadingIconGlyph,
   trailingIconGlyph,
   htmlName,
+  onChange,
+  onTrailingIconClick,
+  ...props
 }) {
-  // Keep state for if field is read only
-  // Const [isEditable, setIsEditable] = useState(false);
-  // Const [isFocused, setIsFocused] = useState(false);
   const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState(defaultValue);
-
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
-  const onTrailingIconClick = () => setValue("");
 
   // I apologise for the following
   let fieldAreaPaddingStyle =
@@ -57,14 +54,14 @@ export default function TextField({
               {label}
             </label>
             <input
-              type="text"
-              value={value}
+              {...props}
+              type={fieldType}
               readOnly={isDisabled}
               id={htmlName}
               name={htmlName}
               placeholder={placeholder}
               className={style.input}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={onChange}
               onFocus={isDisabled ? null : onFocus}
               onBlur={onBlur}
             />
