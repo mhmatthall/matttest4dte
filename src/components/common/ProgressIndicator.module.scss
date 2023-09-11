@@ -1,0 +1,41 @@
+@use "@/styles/theme";
+
+// Adapted from Bence Szabo's pen: (https://codepen.io/finnhvman/pen/OBLZRX)
+
+.linear {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0.25rem;
+  width: 100%;
+  color: theme.$primary;
+  background-color: rgba(theme.$on-surface, 0.08);
+  background-size: 200% 100%;
+  background-image: linear-gradient(
+    to right,
+    transparent 50%,
+    currentColor 50%,
+    currentColor 60%,
+    transparent 60%,
+    transparent 71.5%,
+    currentColor 71.5%,
+    currentColor 84%,
+    transparent 84%
+  );
+  animation: linearIndeterminate 2s infinite linear;
+}
+
+@keyframes linearIndeterminate {
+  0% {
+    background-size: 200% 100%;
+    background-position: left -31.25% top 0%;
+  }
+  50% {
+    background-size: 800% 100%;
+    background-position: left -49% top 0%;
+  }
+  100% {
+    background-size: 400% 100%;
+    background-position: left -102% top 0%;
+  }
+}
