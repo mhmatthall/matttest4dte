@@ -9,9 +9,10 @@ export default function Card({
   actionsDivider,
   actionsAlignment = "right",
   variant,
+  ...props
 }) {
   return (
-    <div className={style["container-" + variant]}>
+    <div className={style["container-" + variant]} {...props}>
       {headline && <h1 className={style.headline}>{headline}</h1>}
       {subhead && <h2 className={style.subhead}>{subhead}</h2>}
       {description && <p className={style.description}>{description}</p>}
