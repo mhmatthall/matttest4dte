@@ -21,7 +21,7 @@ h2,
 h3,
 p,
 li,
-input {
+hr {
   margin: 0;
   padding: 0;
 }
@@ -31,15 +31,17 @@ li {
   line-height: 150%;
 }
 
+input,
+hr {
+  background: none;
+  border: none;
+  outline: none;
+  font: inherit;
+  padding: 0;
+}
+
 // Remove default link styling
 a {
   text-decoration: none;
   color: theme.$on-surface;
-}
-
-input {
-  border: none;
-  outline: none;
-  font: inherit;
-  background: none;
 }
