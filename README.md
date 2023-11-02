@@ -10,14 +10,18 @@ cronicl is not yet released, so there is no guarantee of stability or future sup
   - Live demo is available at [dtetest.matthall.io](https://dtetest.matthall.io/)
   - CI/CD is setup to update the demo with every commit to this repo
   - AWS region is `eu-west-2` (London)
-- The preferred IDE is vscode
 - Database storage is hosted with AWS
   - Using [DynamoDB](https://aws.amazon.com/dynamodb/) for most data
   - Using [S3](https://aws.amazon.com/s3/) for media
 - Backend is built with [Next.js](https://nextjs.org/)
-  - Using the `pages` router
+  - Using the ['pages' router](https://nextjs.org/docs/pages/building-your-application/upgrading/app-router-migration) (not the app router)
 - Frontend is built with [React](https://react.dev/)
   - Following [Material Design 3](https://m3.material.io/) principles
+  - Using the [Inter](https://dtetest.matthall.io/dashboard/settings/about) typeface
+- Mapping functionality is built with [maplibre](https://github.com/maplibre/maplibre-gl-js)
+  - Using [OpenStreetMap](https://www.openstreetmap.org/about/) data
+  - Using [OpenMapTiles](https://www.openmaptiles.org/) styles
+  - Hosted with [Stadia Maps](https://stadiamaps.com/)
 
 ## App structure
 There are three main areas of the app:
@@ -45,11 +49,14 @@ Here's what you'll need to get started with developing cronicl.
 1. Download and install [`nvm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm#using-a-node-version-manager-to-install-nodejs-and-npm).
    - Use [`nvm`](https://github.com/nvm-sh/nvm) on Linux/MacOS
    - Use [`nvm-windows`](https://github.com/coreybutler/nvm-windows) on Windows
+   - Run `nvm version` at the command line to check it installed correctly
+1. Install Node.js v18 by running `nvm install 18`. Node.js comes with its own package manager, `npm`.
+   - Run `node -v` and `npm -v` to check Node and `npm` installed correctly
 1. Ask Matt to give you:
    - Editor access to this repo, so you can make changes
    - The secret keys you need to connect to the backend services
 
-### Instructions
+### Cloning the repo
 1. Clone this repo and **open the directory as a folder in vscode**
 1. Run `npm install` to download the required dependencies
 1. Create a file called `.env.local` in the root of the project to store the secret keys Matt gave you. It should look like this (fill in the blanks):
@@ -58,7 +65,9 @@ Here's what you'll need to get started with developing cronicl.
     DTE_TEST_AWS_SECRET_ACCESS_KEY=<the AWS secret access key>
     DTE_TEST_SESSION_SECRET=<the session cookie encryption password>
     ```
-1. You should be ready to go. Try running `npm run dev` in the console to open the local dev server.
+1. You should be ready to go. Try running `npm run dev` in the vscode terminal to launch the local dev server.
+   - `Ctrl+'` opens the vscode terminal
+   - `Ctrl+C` will terminate the dev server when you're finished
 
 ### Development
 There are various commands that you'll need to work on the app, defined in the [package.json](./package.json) file. Here's what they do:
@@ -69,9 +78,26 @@ There are various commands that you'll need to work on the app, defined in the [
 
 #### Code convention
 - Every time you save the file in vscode, the linter will run and keep your code conformant to the code convention for the app. Things might move around slightly when this happens.
-- Import statements should be in the new style, like: `import Link from "next/link";`. Avoid using the old-style statements like: `let fs = using("fs");`.
+- Importing dependencies/libraries should use the `import` keyword, as opposed to the old `using` keyword.
+    ``` jsx
+    // A nice, modern `import` statement
+    import Link from "next/link";
+
+    // Try to avoid old-style `using` statements
+    const fs = using("fs");
+    ```
 - All frontend files containing React code should be saved as `.jsx` files. Any JS file without React components (mainly just backend and API routes) should be saved as `.js`.
-- We aren't using TypeScript, but try to maintain [JSDoc](https://jsdoc.app/about-getting-started.html) code documentation wherever possible.
+- We aren't using TypeScript, but try to maintain basic [JSDoc](https://jsdoc.app/about-getting-started.html) code commenting wherever possible. Example from [/src/lib/auth/token.js](/src/lib/auth/token.js):
+    ``` js
+    /**
+     * Generate a 128-bit UUID as a token.
+     * @private
+     * @returns {string} A valid UUID token string
+     */
+    function generateToken() {
+      return uuidv4();
+    }
+    ```
 - We are using modular Sass, as opposed to plain CSS. All style code should be in a separate `.module.scss` file. The code is similar though, so just look at where else it's used in the repo for an idea (e.g. in [`/src/components/common`](/src/components/common)).
 - Import other files using the [module path alias](https://nextjs.org/docs/app/building-your-application/configuring/absolute-imports-and-module-aliases) '@' to keep import statements clean. The '@' symbol literally just means 'start at `./src`'. See:
     ``` jsx
@@ -84,7 +110,7 @@ There are various commands that you'll need to work on the app, defined in the [
 - With React, prefer [functional components over class components](https://legacy.reactjs.org/docs/components-and-props.html#function-and-class-components) wherever possible. Class components are the old-fashioned way to do React components and they're worse in every way.
 
 #### Testing
-Before you push changes to this repo, make sure you test them first! You should make sure they work:
+Before you push changes to this repo, make sure it all still works! You should test your changes:
 - locally on the dev build (using `npm run dev`)
 - locally on the production build (using `npm run build` then `npm run start`)
 
@@ -95,12 +121,11 @@ Before you push changes to this repo, make sure you test them first! You should 
   - Using ready-made M3 components for cronicl:
     ``` jsx
     // ExampleComponent.jsx
-    // Import the reusable M3 button component at the top of the file
     import Button from "@/components/common/Button";
 
     ...
 
-    // Place the button in a component
+    // Place a button somewhere in a component
     <Button
       label="Enter"
       variant="filled"
@@ -112,7 +137,8 @@ Before you push changes to this repo, make sure you test them first! You should 
     ``` scss
     // ExampleComponent.module.scss
     @use "@/styles/theme";
-    
+
+    // Using various colour and size tokens
     .container-filled {
       background-color: theme.$primary;
       color: theme.$on-primary;
@@ -125,24 +151,26 @@ Before you push changes to this repo, make sure you test them first! You should 
     // ExampleComponent.module.scss
     @use "@/styles/m3";
 
-    // For typography
+    // Using a typography token
     .label {
       @include m3.body-small;
       display: flex;
       align-items: center;
     }
 
-    // For elevation
+    // Using an elevation token
     .container-elevated {
       background: theme.$surface-container-low;
     }
     ```
   - Using material symbols for iconography:
     ``` scss
-    // In ExampleComponent.module.scss
-    @import "material-symbols";
+    // ExampleComponent.module.scss
+    @use "@/styles/theme";
+    @import "material-symbols"; // this import is all you need for material symbols to work
 
-    // Wrapper selector
+    // We'll use a wrapper element for more control of styling the symbol
+    // (you don't need a wrapper element, but it's recommended)
     .symbol {
       display: flex;
       justify-content: center;
@@ -151,12 +179,12 @@ Before you push changes to this repo, make sure you test them first! You should 
     }
     ```
     ``` jsx
-    // In ExampleComponent.jsx
+    // ExampleComponent.jsx
     import style from "./ExampleComponent.module.scss";
 
     ...
     
-    // Inserting a material symbol (the <span> element) into our wrapper <div> element.
+    // Inserting a material symbol (the <span> element) into our wrapper element (the <div> element).
     // Replace "NAME OF THE GLYPH" with a real icon name from https://fonts.google.com/icons, like "cake".
     <div className={style.symbol}>
       <span className={style["material-symbols-outlined"]}>{"NAME OF THE GLYPH"}</span>
@@ -167,7 +195,9 @@ Before you push changes to this repo, make sure you test them first! You should 
 Here's where the key folders you'll need are in this repo:
 - [`/src`](/src) — all the actual code for the app
   - [`/src/components`](/src/components) — the parts of the UI used to build the app
+    - [`/src/components/common`](/src/components/common) — reusable M3 components
   - [`/src/pages`](/src/pages) — every file and folder in this directory maps directly to an app URL. For example, the code for the `/login` page can be found at [`/src/pages/login.jsx`](src/pages/login.jsx).
     - [`/src/pages/api`](/src/pages/api) — API routes
     - [`/src/pages/dashboard`](/src/pages/dashboard) — dashboard routes
     - [`/src/pages/play`](/src/pages/play) — game routes
+  - [`/src/styles`](/src/styles) — global styles that can be used anywhere in the app
