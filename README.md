@@ -1,122 +1,203 @@
-# Test repo for the Down to Earth app
+# cronicl
+> **cronicl**, _verb., Welsh translation of_ **chronicle**; to create a detailed record of events over time
 
-This repo is a dev prototype for testing things for the Down to Earth app — specifically things to do with pipeline, so we don't break the main repo.
+An educational biodiversity monitoring app for engaging young people in citizen science, created by a team at [Swansea University](https://www.swansea.ac.uk/computational-foundry/epsrc-centre-for-doctoral-training/) in partnership with [Down to Earth](https://downtoearthproject.org.uk/).
 
-[**View this repo hosted live: dtetest.matthall.io**](https://dtetest.matthall.io/)
+cronicl is not yet released, so there is no guarantee of stability or future support. This repo is for development purposes only.
 
 ## Technology
+- Hosted with [AWS Amplify Hosting](https://aws.amazon.com/amplify/hosting/)
+  - Live demo is available at [dtetest.matthall.io](https://dtetest.matthall.io/)
+  - CI/CD is setup to update the demo with every commit to this repo
+  - AWS region is `eu-west-2` (London)
+- Database storage is hosted with AWS
+  - Using [DynamoDB](https://aws.amazon.com/dynamodb/) for most data
+  - Using [S3](https://aws.amazon.com/s3/) for media
+- Backend is built with [Next.js](https://nextjs.org/)
+  - Using the ['pages' router](https://nextjs.org/docs/pages/building-your-application/upgrading/app-router-migration) (not the app router)
+- Frontend is built with [React](https://react.dev/)
+  - Following [Material Design 3](https://m3.material.io/) principles
+  - Using the [Inter](https://dtetest.matthall.io/dashboard/settings/about) typeface
+- Mapping functionality is built with [maplibre](https://github.com/maplibre/maplibre-gl-js)
+  - Using [OpenStreetMap](https://www.openstreetmap.org/about/) data
+  - Using [OpenMapTiles](https://www.openmaptiles.org/) styles
+  - Hosted with [Stadia Maps](https://stadiamaps.com/)
 
-### Deployment & hosting
+## App structure
+There are three main areas of the app:
+1. **The landing** is the static, public-facing part of the app. It contains information about cronicl and links the user to the other parts of the app.
+1. **The dashboard** is the main part of cronicl, with various menus able to provide different functionality.
+   - Teachers use the dashboard to manage people, sites, captures, sessions, and more. This is how they manage the app.
+   - Students use the dashboard to keep track of and explore what they've found and where.
+1. **The game** is where Kahoot-like, interactive live sessions take place.
+   - Games are setup by teachers in the dashboard
+   - Students join games either by:
+     - accepting an invite request through their dashboard (if they have an account)
+     - entering a special join code that the teacher can show to students (if they don't have an account)
 
-Right so we started with Google App Engine, which is kind of easy to use but did take some time to understand all 8000000 of Google's cloud products. However, there are [known latency issues with GAE that they just aren't fixing](https://issuetracker.google.com/issues/64458939), so we just swivelled that and now we're using [AWS Amplify](https://aws.amazon.com/amplify/). It's a nice backend for taking a Node.js-based app and hosting it, and jesus wept is it easy to use. In short: AWS > Google Cloud.
+## Setup
+Before you start setting up this repo, consider whether you need to do with the app. Basically anything outside of the frontend UI development should probably be handled by Matt.
+- Remember that if you just want to test out the latest version of this app, you can go to [dtetest.matthall.io](https://dtetest.matthall.io/).
+- Remember we have the stripped-down [test repo](https://github.com/mhmatthall/cronicl-pissaround) for you to develop in without worrying about breaking this one.
+- If you are doing frontend development, **please** make sure you sketch (at least on paper; preferably on Figma) what you're trying to do first.
 
-This repo is currently setup with basic CD on the AWS side, so whenever a commit is pushed to main, the site gets re-fetched, built, and deployed.
-
-### Architecture
-
-This is a Next.js project and so we're using their structure, which tightly couples the frontend and backend. The frontend is React, and the backend is Node.js.
-
-- The frontend is rendered server-side, which means it's flattened into HTML by the time the user gets it. This is good for performance, because otherwise React on its own has to do a lot of work to render the page in the browser.
-- The backend is going to house the actual system logic. All the fetching of data from the database, authentication, etc. will be done here.
-
-The server communicates with [AWS DynamoDB](https://aws.amazon.com/dynamodb/) for all data storage, but does its own authentication and session management. The app is hosted with [AWS Amplify Hosting](https://aws.amazon.com/amplify/hosting/) in London (`eu-west-2`).
-
-## Installation
+Here's what you'll need to get started with developing cronicl.
 
 ### Prerequisites
+1. Download and install [vscode](https://code.visualstudio.com/)
+1. Install the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions for vscode
+1. Download and install [`nvm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm#using-a-node-version-manager-to-install-nodejs-and-npm).
+   - Use [`nvm`](https://github.com/nvm-sh/nvm) on Linux/MacOS
+   - Use [`nvm-windows`](https://github.com/coreybutler/nvm-windows) on Windows
+   - Run `nvm version` at the command line to check it installed correctly
+1. Install Node.js v18 by running `nvm install 18`. Node.js comes with its own package manager, `npm`.
+   - Run `node -v` and `npm -v` to check Node and `npm` installed correctly
+1. Ask Matt to give you:
+   - Editor access to this repo, so you can make changes
+   - The secret keys you need to connect to the backend services
 
-- [Install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm#using-a-node-version-manager-to-install-nodejs-and-npm). The preferred way is to use Node Version Manager because there's lots of different versions of Node, but the installer works too.
-- Get editor access to this repo by messaging Matt
+### Cloning the repo
+1. Clone this repo and **open the directory as a folder in vscode**
+1. Run `npm install` to download the required dependencies
+1. Create a file called `.env.local` in the root of the project to store the secret keys Matt gave you. It should look like this (fill in the blanks):
+    ``` yaml
+    DTE_TEST_AWS_ACCESS_KEY_ID=<the AWS access key id>
+    DTE_TEST_AWS_SECRET_ACCESS_KEY=<the AWS secret access key>
+    DTE_TEST_SESSION_SECRET=<the session cookie encryption password>
+    ```
+1. You should be ready to go. Try running `npm run dev` in the vscode terminal to launch the local dev server.
+   - `Ctrl+'` opens the vscode terminal
+   - `Ctrl+C` will terminate the dev server when you're finished
 
-### Instructions
+### Development
+There are various commands that you'll need to work on the app, defined in the [package.json](./package.json) file. Here's what they do:
+- `npm run dev` starts a local dev server at [localhost:8080](http://localhost:8080) which hot-reloads when you make changes
+- `npm run build` builds the app (to the `./build` directory) ready for production
+- `npm run start` will host the built version of the app locally on your computer, so you can test that the build worked
+- `npm run lint` runs the linter, which checks that code styling is correct
 
-(I'm assuming we're all using vscode; I've set everything up for that)
+#### Code convention
+- Every time you save the file in vscode, the linter will run and keep your code conformant to the code convention for the app. Things might move around slightly when this happens.
+- Importing dependencies/libraries should use the `import` keyword, as opposed to the old `using` keyword.
+    ``` jsx
+    // A nice, modern `import` statement
+    import Link from "next/link";
 
-1. Clone this repo
-2. Run `npm install` to download the required dependencies
-3. Install the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions for vscode. These will make your life easier by automatically formatting your code to follow convention.
-4. Create a `.env.local` file in the root of the project that looks like this (fill in the blanks):
+    // Try to avoid old-style `using` statements
+    const fs = using("fs");
+    ```
+- All frontend files containing React code should be saved as `.jsx` files. Any JS file without React components (mainly just backend and API routes) should be saved as `.js`.
+- We aren't using TypeScript, but try to maintain basic [JSDoc](https://jsdoc.app/about-getting-started.html) code commenting wherever possible. Example from [/src/lib/auth/token.js](/src/lib/auth/token.js):
+    ``` js
+    /**
+     * Generate a 128-bit UUID as a token.
+     * @private
+     * @returns {string} A valid UUID token string
+     */
+    function generateToken() {
+      return uuidv4();
+    }
+    ```
+- We are using modular Sass, as opposed to plain CSS. All style code should be in a separate `.module.scss` file. The code is similar though, so just look at where else it's used in the repo for an idea (e.g. in [`/src/components/common`](/src/components/common)).
+- Import other files using the [module path alias](https://nextjs.org/docs/app/building-your-application/configuring/absolute-imports-and-module-aliases) '@' to keep import statements clean. The '@' symbol literally just means 'start at `./src`'. See:
+    ``` jsx
+    // Without the alias
+    import Button from "../../../components/common/Button";
 
-```
-DTE_TEST_AWS_ACCESS_KEY_ID=<the AWS access key id>
-DTE_TEST_AWS_SECRET_ACCESS_KEY=<the AWS secret access key>
-DTE_TEST_SESSION_SECRET=<the session cookie encryption password>
-```
-5. Done!
+    // With the alias
+    import Button from "@/components/common/Button";
+    ```
+- With React, prefer [functional components over class components](https://legacy.reactjs.org/docs/components-and-props.html#function-and-class-components) wherever possible. Class components are the old-fashioned way to do React components and they're worse in every way.
 
-## Development
+#### Testing
+Before you push changes to this repo, make sure it all still works! You should test your changes:
+- locally on the dev build (using `npm run dev`)
+- locally on the production build (using `npm run build` then `npm run start`)
 
-All the scripts can be viewed/edited in `package.json`.
+#### Tips
+- If you're looking at the Next.js documentation, make sure you select the 'pages' router docs rather than the 'app' router ones.
+- Be acutely aware of potential future costs of using paid-for libraries and tools, and consider open source alternatives where possible.
+- When designing the frontend, use the Material Design 3 (M3) docs as a trusted guide. It saves a lot of thinking when it comes to [responsive layouts](https://m3.material.io/foundations/layout/understanding-layout/overview), [consistency](https://m3.material.io/foundations/design-tokens/overview), [colour theory](https://m3.material.io/styles/color/overview), and [iconography](https://fonts.google.com/icons).
+  - Using ready-made M3 components for cronicl:
+    ``` jsx
+    // ExampleComponent.jsx
+    import Button from "@/components/common/Button";
 
-- `npm run dev` starts a local dev server at [localhost:8080](http://localhost:8080) that auto-reloads when you make changes
-- `npm run build` builds the site (to the `./build` directory) for production
-- `npm run start` starts a local server that serves the built site (from the `./build` directory). This is usually used to test the production build locally right before deployment.
-- `npm run lint` runs the linter, which will tell you if your code follows convention.
+    ...
 
-**Note:**
-Right now, whenever you push a commit AWS will automatically redeploy the site, so within a few mins it'll be live at [dtetest.matthall.io](https://dtetest.matthall.io/).
+    // Place a button somewhere in a component
+    <Button
+      label="Enter"
+      variant="filled"
+      type="submit"
+      disabled={isSubmitting}
+    />
+    ```
+  - Using the cronicl M3 design tokens for colours and sizes:
+    ``` scss
+    // ExampleComponent.module.scss
+    @use "@/styles/theme";
 
-### Contributing
-After you've implemented whatever in your dev environment, make sure you also test it locally in production mode (i.e. run `npm run build` then `npm run start`) before pushing your changes. This more closely mimics the production environment, and will catch any issues that might arise from the build process.
+    // Using various colour and size tokens
+    .container-filled {
+      background-color: theme.$primary;
+      color: theme.$on-primary;
+      border-radius: theme.$corner-large;
+      margin: theme.$compact-margin;
+    }
+    ```
+  - Using the cronicl M3 design tokens for typography and elevation:
+    ``` scss
+    // ExampleComponent.module.scss
+    @use "@/styles/m3";
 
-### Repo structure
-Reference other files using the `@` macro defined in [`jsconfig.json`](./jsconfig.json) to keep imports succinct.
+    // Using a typography token
+    .label {
+      @include m3.body-small;
+      display: flex;
+      align-items: center;
+    }
 
-Here's how the project should be structured (file names are placeholders and may not exist):
-```
-/
-├── .vscode/
-├── public/
-│   ├── img/
-│   ├── favicon.ico
-│   └── manifest.json
-└── src/
-│   ├── components/
-│   │   ├── auth/
-│   │   │   ├── LoginForm.jsx
-│   │   │   ├── LogoutButton.jsx
-│   │   │   ├── RegisterForm.jsx
-│   │   │   └── UserDataForm.jsx
-│   │   ├── common/
-│   │   │   ├── Button.jsx
-│   │   │   └── CheckBox.jsx
-│   │   ├── dashboard/
-│   │   │   ├── Layout.jsx
-│   │   │   ├── Header.jsx
-│   │   │   └── Footer.jsx
-│   │   ├── game/
-│   │   │   ├── Layout.jsx
-│   │   │   └── Map.jsx
-│   │   └── landing/
-│   │       └── Layout.jsx
-│   ├── lib/
-│   │   ├── auth/
-│   │   │   ├── iron-config.js
-│   │   │   ├── token.js
-│   │   │   └── withSession.jsx
-│   │   └── common/
-│   │       ├── dynamo.js
-│   │       └── errors.js
-│   ├── pages/
-│   │   ├── api/
-│   │   │   ├── login.js
-│   │   │   └── logout.js
-│   │   ├── dashboard/
-│   │   │   ├── index.js
-│   │   │   └── settings.js
-│   │   ├── go/
-│   │   │   └── index.js
-│   │   ├── _app.js
-│   │   ├── index.js
-│   │   └── login.js
-│   ├── styles/
-│   │   ├── _fonts.scss
-│   │   ├── _theme.scss
-│   │   └── globals.scss
-│   └── middleware.js
-├── .env.local
-├── (all the config files...)
-├── package.json
-├── README.md
-└── server.js
-```
+    // Using an elevation token
+    .container-elevated {
+      background: theme.$surface-container-low;
+    }
+    ```
+  - Using material symbols for iconography:
+    ``` scss
+    // ExampleComponent.module.scss
+    @use "@/styles/theme";
+    @import "material-symbols"; // this import is all you need for material symbols to work
+
+    // We'll use a wrapper element for more control of styling the symbol
+    // (you don't need a wrapper element, but it's recommended)
+    .symbol {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: theme.$medium-symbol;
+    }
+    ```
+    ``` jsx
+    // ExampleComponent.jsx
+    import style from "./ExampleComponent.module.scss";
+
+    ...
+    
+    // Inserting a material symbol (the <span> element) into our wrapper element (the <div> element).
+    // Replace "NAME OF THE GLYPH" with a real icon name from https://fonts.google.com/icons, like "cake".
+    <div className={style.symbol}>
+      <span className={style["material-symbols-outlined"]}>{"NAME OF THE GLYPH"}</span>
+    </div>
+    ```
+
+#### Repo structure
+Here's where the key folders you'll need are in this repo:
+- [`/src`](/src) — all the actual code for the app
+  - [`/src/components`](/src/components) — the parts of the UI used to build the app
+    - [`/src/components/common`](/src/components/common) — reusable M3 components
+  - [`/src/pages`](/src/pages) — every file and folder in this directory maps directly to an app URL. For example, the code for the `/login` page can be found at [`/src/pages/login.jsx`](src/pages/login.jsx).
+    - [`/src/pages/api`](/src/pages/api) — API routes
+    - [`/src/pages/dashboard`](/src/pages/dashboard) — dashboard routes
+    - [`/src/pages/play`](/src/pages/play) — game routes
+  - [`/src/styles`](/src/styles) — global styles that can be used anywhere in the app
