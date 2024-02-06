@@ -7,7 +7,7 @@ cronicl is not yet released, so there is no guarantee of stability or future sup
 
 ## Technology
 - Hosted with [AWS Amplify Hosting](https://aws.amazon.com/amplify/hosting/)
-  - Live demo is available at [dtetest.matthall.io](https://dtetest.matthall.io/)
+  - Live demo is available at [cronicl.matthall.io](https://cronicl.matthall.io/)
   - CI/CD is setup to update the demo with every commit to this repo
   - AWS region is `eu-west-2` (London)
 - Database storage is hosted with AWS
@@ -17,7 +17,7 @@ cronicl is not yet released, so there is no guarantee of stability or future sup
   - Using the ['pages' router](https://nextjs.org/docs/pages/building-your-application/upgrading/app-router-migration) (not the app router)
 - Frontend is built with [React](https://react.dev/)
   - Following [Material Design 3](https://m3.material.io/) principles
-  - Using the [Inter](https://dtetest.matthall.io/dashboard/settings/about) typeface
+  - Using the [Inter](https://rsms.me/inter/) typeface family
 - Mapping functionality is built with [maplibre](https://github.com/maplibre/maplibre-gl-js)
   - Using [OpenStreetMap](https://www.openstreetmap.org/about/) data
   - Using [OpenMapTiles](https://www.openmaptiles.org/) styles
@@ -37,7 +37,7 @@ There are three main areas of the app:
 
 ## Setup
 Before you start setting up this repo, consider whether you need to do with the app. Basically anything outside of the frontend UI development should probably be handled by Matt.
-- Remember that if you just want to test out the latest version of this app, you can go to [dtetest.matthall.io](https://dtetest.matthall.io/).
+- Remember that if you just want to test out the latest version of this app, you can go to [cronicl.matthall.io](https://cronicl.matthall.io/).
 - Remember we have the stripped-down [test repo](https://github.com/mhmatthall/cronicl-pissaround) for you to develop in without worrying about breaking this one.
 - If you are doing frontend development, **please** make sure you sketch (at least on paper; preferably on Figma) what you're trying to do first.
 
